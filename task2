@@ -1,0 +1,13 @@
+import csv
+
+with open('game.csv', encoding='utf8') as file:
+    reader = csv.reader(file, delimiter='$')
+    data = sorted(list(reader)[1:])
+    game_list = dict()
+    key = data[1]
+    for GameName, characters, nameError, date in data:
+        game_list[GameName] = game_list.get(GameName, 0) + 1
+
+    for i in game_list:
+        print(f'{i} - количество багов: {game_list[i]}')
+
