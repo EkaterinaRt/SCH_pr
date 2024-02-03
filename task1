@@ -1,0 +1,15 @@
+import csv
+
+with open('game.csv', encoding='utf8') as file:
+    reader = csv.reader(file, delimiter='$')
+    answer = list(reader)[1:]
+
+    for el in answer:
+        if '55' in el[-2]:
+            el[-2] = 'Done'
+
+
+with open('game_new.csv', 'w', encoding='utf8', newline='') as file:
+    w = csv.writer(file)
+    w.writerow(['gameName', 'characters', 'nameError', 'date'])
+    w.writerows(answer)
