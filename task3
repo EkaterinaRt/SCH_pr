@@ -1,0 +1,23 @@
+import csv
+
+with open('game.csv', encoding='utf8') as file:
+    reader = csv.reader(file, delimiter='$')
+    data = sorted(list(reader)[1:])
+    name_list = dict()
+
+    key = data[1]
+    for GameName, characters, nameError, date in data:
+        name_list.setdefault(characters, [])
+        name_list[characters].append(GameName)
+
+
+
+nickname = input()
+while nickname != 'game':
+    if nickname in name_list:
+        print(f'Персонаж {nickname} встречается в играх:')
+        for i in name_list[nickname]:
+            print(i)
+    else:
+        print('Этого персонажа не существует')
+    nickname = input()
